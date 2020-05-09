@@ -77,7 +77,7 @@ class Table extends Component {
               </span>
             </th>
             <th>
-              <span onClick={() => this.sortEmployees("dob.age")}>Age</span>
+              <span onClick={() => {this.sortEmployees("dob.age")}}>Age</span>
             </th>
           </tr>
         </thead>
