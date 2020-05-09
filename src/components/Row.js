@@ -2,49 +2,36 @@ import React from "react";
 
 function Row(props) {
   return (
-    <div>
-      <ul>
+    <table striped bordered hover variant="dark">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Country</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
         {props.results.map((result) => (
-          <li className="list-group-item" key={result.cell}>
-            <img
-              alt={result.name.first}
-              className="img-fluid"
-              src={result.picture.thumbnail}
-            />
-          </li>
+          <tr>
+            <td>
+              <img
+                alt={result.name.first}
+                className="img-fluid"
+                src={result.picture.thumbnail}
+              />
+            </td>
+            <td>{result.name.first}</td>
+            <td>{result.name.last}</td>
+            <td>{result.gender}</td>
+            <td>{result.location.country}</td>
+            <td>{result.dob.age}</td>
+          </tr>
         ))}
-      </ul>
-      <ul>
-        {props.results.map((result) => (
-          <li className="list-group-item" key={result.cell}>
-            {result.name.first} {result.name.last}
-          </li>
-        ))}
-      </ul>
-
-      <ul>
-        {props.results.map((result) => (
-          <li className="list-group-item" key={result.cell}>
-            {result.gender}
-          </li>
-        ))}
-      </ul>
-
-      <ul>
-        {props.results.map((result) => (
-          <li className="list-group-item" key={result.cell}>
-            {result.location.country}
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {props.results.map((result) => (
-          <li className="list-group-item" key={result.cell}>
-            {result.dob.age}
-          </li>
-        ))}
-      </ul>
-    </div>
+      </tbody>
+    </table>
   );
 }
 
