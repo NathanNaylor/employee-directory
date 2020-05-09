@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Row from "./Row";
+let order;
 
 class Table extends Component {
   state = {
@@ -9,7 +10,9 @@ class Table extends Component {
   };
 
   componentDidMount() {
-    this.generateUsers("?results=20");
+    this.generateUsers(
+      "?results=20&inc=name,email,phone,dob,picture,id,location,gender"
+    );
   }
   generateUsers = (query) => {
     API.search(query)
@@ -20,10 +23,37 @@ class Table extends Component {
       .catch((err) => console.log(err));
   };
 
+  sortEmployees() {
+    order = "descending";
+  }
+
+  renderRow() {
+    const employees = [...this.state.results];
+    console.log(employees);
+    return employees
+      .sort((a, b) => {
+        return a.name.first > b.name.first ? 1 : -1;
+      })
+      .map((emp) => <Row results={emp} />);
+  }
+
   render() {
     return (
       <div>
-        <Row results={this.state.results} />
+        <header>
+          <h1>Employee Directory</h1>
+        </header>
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>Country</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+        {this.renderRow()}
       </div>
     );
   }
