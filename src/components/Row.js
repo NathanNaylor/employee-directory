@@ -1,8 +1,9 @@
 import React from "react";
+import Table from "react-bootstrap/Table"
 
 function Row(props) {
   return (
-    <table striped bordered hover variant="dark">
+    <Table striped bordered hover variant="dark">
       <thead>
         <tr>
           <th>#</th>
@@ -31,7 +32,7 @@ function Row(props) {
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   );
 }
 
